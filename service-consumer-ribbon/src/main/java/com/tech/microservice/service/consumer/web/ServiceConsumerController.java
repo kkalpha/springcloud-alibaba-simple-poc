@@ -4,9 +4,7 @@ import com.tech.microservice.service.consumer.service.ServiceConsumerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ServiceConsumerController {
@@ -16,10 +14,17 @@ public class ServiceConsumerController {
     @Autowired
     ServiceConsumerService serviceConsumerService;
 
-    @RequestMapping(value = "/service1", method = RequestMethod.GET)
+    @GetMapping(value = "/service1")
     public String service1() throws Exception {
         logger.info("/service1");
         return serviceConsumerService.service1();
     }
+
+    @GetMapping(value = "/testLoadBalancerClient")
+    public String testLoadBalancerClient() throws Exception {
+        logger.info("/testLoadBalancerClient");
+        return serviceConsumerService.testLoadBalancerClient();
+    }
+
 
 }
